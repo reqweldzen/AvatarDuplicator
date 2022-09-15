@@ -1,5 +1,11 @@
 # AvatarDuplicator
 
+## Copy Target
+* Avatar (Prefabricate)
+* FX Layer
+* ExpressionsMenu
+* ExpressionParameters
+
 ## How to Use
 
 1. Select [AvatarDuplicator/Duplicate] from the Menu.
