@@ -1,12 +1,12 @@
 ﻿using UnityEditor;
 using UnityEngine;
-using VRC.SDK3.Avatars.Components;
 
-namespace YumemiDoh.Editor
+namespace Yukifox.Editor
 {
 	public class AvatarDuplicator : EditorWindow
 	{
 		private GameObject _sourceAvatar;
+		private bool _isCopyAnimationClip = true;
 		
 		[MenuItem("AvatarDuplicator/Duplicator")]
 		private static void ShowWindow()
@@ -16,7 +16,7 @@ namespace YumemiDoh.Editor
 
 		private void Check()
 		{
-			var avatarDuplicator = new AvatarDuplicatorCore(_sourceAvatar);
+			var avatarDuplicator = new AvatarDuplicatorCore(_sourceAvatar, _isCopyAnimationClip);
 
 			if (avatarDuplicator.CheckDuplicateable())
 			{
@@ -30,16 +30,16 @@ namespace YumemiDoh.Editor
 		
 		private void Duplicate()
 		{
-			var duplicator = new AvatarDuplicatorCore(_sourceAvatar);
-			duplicator.DuplicateAvatar(_sourceAvatar.name + "_Duplicate");
+			var duplicator = new AvatarDuplicatorCore(_sourceAvatar, _isCopyAnimationClip);
+			duplicator.DuplicateAvatar();
 		}
 		
 		private void OnGUI()
 		{
-			GUILayout.BeginHorizontal();
-			EditorGUILayout.LabelField("Source Object");
-			_sourceAvatar = EditorGUILayout.ObjectField(_sourceAvatar, typeof(GameObject), true) as GameObject;
-			GUILayout.EndHorizontal();
+			_sourceAvatar = EditorGUILayout.ObjectField("Source Object", _sourceAvatar, typeof(GameObject), true) as GameObject;
+
+			EditorGUILayout.Space();
+			_isCopyAnimationClip = EditorGUILayout.Toggle("Copy AnimationClip", _isCopyAnimationClip);
 
 			EditorGUI.BeginDisabledGroup(!_sourceAvatar);
 			if (GUILayout.Button("Check"))
