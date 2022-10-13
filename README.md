@@ -1,6 +1,6 @@
 # AvatarDuplicator
 
-## Copy Target
+## Copy Target (Overwrite if it exists.)
 * Avatar (On Scene)
 * FX Layer
   * Animation Clip (Optional)
